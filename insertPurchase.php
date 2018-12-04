@@ -17,7 +17,7 @@
         $whichProduct=$_POST["productnames"];
         $whichProductQuantity=$_POST["productquantity"];
 
-        $query = 'INSERT INTO purchases(cusID, prodID, Quantity)VALUES('. $whichC
+        $query = 'INSERT INTO purchases(cusID, prodID, Quantity)VALUES('. $whichCustomer. '" AND prod
         $query2 = 'SELECT * FROM purchases';
         $query3 = 'UPDATE purchases SET Quantity= "' . $whichProductQuantity . '"
         $result = mysqli_query($connection, $query);
