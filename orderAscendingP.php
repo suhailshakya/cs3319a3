@@ -7,7 +7,7 @@
 <?php
         include 'connectdb.php';
 ?>
-<h2> Products in Asscending order by description</h2>
+<h2> Products in Ascending order by description</h2>
 
 <ol>
 <?--this file orders products in Ascending order-->

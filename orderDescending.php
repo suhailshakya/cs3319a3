@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ascend</title>
+<title>descend</title>
 </head>
 <body>
 <?php
-        include 'connectdb.php';
+     	include 'connectdb.php';
 ?>
-<h2> Products in Asscending order by description</h2>
+<h2> Products in Descending order by description:</h2>
 
 <ol>
-<?--this file orders products in Ascending order-->
+<?--this file orders products in descending order-->
 
 <?php
-        $query = 'SELECT * FROM product ORDER BY description';
+     	$query = 'SELECT * FROM product ORDER BY description DESC';
         $result = mysqli_query($connection, $query);
         if(!$result){
                 die("database query failed");
         }
-        while($row=mysqli_fetch_assoc($result)){
+	while($row=mysqli_fetch_assoc($result)){
                 echo "<li>";
                 echo "Product ID: ";
                 echo $row["prodID"]. "<br>";
@@ -27,14 +27,13 @@
                 echo "Product cost: ";
                 echo $row["cost"]. "<br>". "</li>";
         }
-        mysqli_free_result($result);
+	mysqli_free_result($result);
 ?>
 
 </ol>
 <?php
-        mysqli_close($connection);
+     	mysqli_close($connection);
 ?>
 </body>
 </html>
-
 

@@ -20,7 +20,7 @@ include 'connectdb.php';
          die("database query2 failed.");
      }
     while ($row=mysqli_fetch_assoc($result)) {
-        echo $row["description"];
+        echo $row["description"]. "<br>";
      }
      mysqli_free_result($result);
 ?>

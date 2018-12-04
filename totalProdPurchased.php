@@ -5,34 +5,36 @@
 <title> Uh HUH </title>
 </head>
 <body>
-<h1> Total number of purchases per product</h1>
-<?php
-        include 'connectdb.php';
-?>
-<ol>
-<?php
-   $whichProduct = $_POST["productID"];
-//   echo "Product: ". $whichProduct;
-   $query = 'SELECT * FROM purchases, product WHERE product.prodID="' .$whichProduct. '" AND product.prodID=purchases.prodID';
-   echo $query;
-   $result = mysqli_query($connection, $query);
-    if (!$result) {
-         die("database query2 failed.");
-     }
-    while ($row=mysqli_fetch_assoc($result)) {
-        echo "<li>". "Product ID: ". $row["prodID"];
-	echo "<br>". "Product: ". $row["description"];
-        echo "<br>". "Cost: " . $row["cost"];
-        echo "<br>". "Quantity: ". $row["Quantity"]. "</li>";
-//	echo "<br>". "Total Sales: ". $row["(Quantity*cost)"]. "</li>";
-     }
-     mysqli_free_result($result);
-?>
-</ol>
 
 <?php
-   mysqli_close($connection);
+     	include 'connectdb.php';
 ?>
+<h2>When customer purchase more than entered quantity</h2>
+
+<ol>
+<?php
+     	$whichProd = $_POST["ProductID"];
+        $query = 'SELECT * FROM product, customer, purchases WHERE customer.cusID=purchases.cusID AND purchases.Quantity>"' . $whichProd . '" AND purchases.prodID=product.prodID';
+        $result = mysqli_query($connection, $query);
+
+        if(!$result){
+                die("Query FAIled");
+        }
+	while($row=mysqli_fetch_assoc($result)){
+		echo $row["firstname"]. " ". $row["lastname"];
+                echo "<br>";
+		echo $row["description"];
+		echo "<br>";
+		echo "Quantity: ". $row["Quantity"];
+        }
+	mysqli_free_result($result);
+?>
+
+</ol>
+<?php
+     	mysqli_close($connection);
+?>
+
 </body>
 </html>
 
