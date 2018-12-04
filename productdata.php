@@ -10,12 +10,11 @@ while ($row = mysqli_fetch_assoc($result)) {
      echo '<input type="radio" name="productID" value="';
      echo $row["prodID"];
      echo '">';
-     echo "<li>";
      echo "Product ID: ". $row["prodID"]. "<br>";
      echo $row["description"]. "<br>";
      echo "Cost: ". $row["cost"]. "<br>";
-     echo "Quantity on Hand: ". $row["quantityonhand"]. "</li>";
-     echo "<br>";
+     echo "Quantity on Hand: ". $row["quantityonhand"];
+     echo "<br>". "<br>";
 }
 mysqli_free_result($result);
 echo "</ol>";

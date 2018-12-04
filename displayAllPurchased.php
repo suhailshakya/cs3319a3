@@ -28,7 +28,7 @@ include 'connectdb.php';
 	echo "Description: ";
 	echo $row["description"]. "<br>";
 	echo "Quantity: ";
-	echo $row["quantity"]. "<br>". "</li>";
+	echo $row["quantityonhand"]. "<br>". "</li>";
      }
      mysqli_free_result($result);
 ?>

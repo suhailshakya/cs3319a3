@@ -41,32 +41,45 @@
 ?>
 
 
-<table style="width:100%">
-<tr>
-<td>
-<h3> Customers </h3>
-<form action="displayAllPurchased.php" method="post">
-<?php
-   include 'customerdata.php';
-?>
-<input type="submit" value="Display All Customers">
-</form>
-</td>
-</tr>
-<tr>
-<td>
-<h3> Select Customers to delete </h3>
-<form action="deleteCustomer.php" method="post">
-	<?php
-		include 'customerdata.php';
-	?>
-	<button type="submit" value="Delete"> DELETE 
-	</button>
-</form>
-</td>
-</tr>
-</table>
 
+
+<table style="width:200%">
+    <tr>
+        <td>
+            <h3> Customers </h3>
+            <form action="displayAllPurchased.php" method="post">
+                <?php
+                    include 'customerdata.php';
+                ?>
+		<label for="customerdisp">Display all product purchased by customer</label>
+                <input type="submit" value="Display">
+            </form>
+        </td>
+        <td>
+            <h3> Select Customers to delete </h3>
+            <form action="deleteCustomer.php" method="post">
+	           <?php
+		          include 'customerdata.php';
+	           ?>
+	           <button type="submit" value="Delete"> Delete Customer
+	           </button>
+            </form>
+        </td>
+   </tr>
+   <tr>
+	<td>
+	    <h3>Update user phone number</h3>
+            <form action="update.php" method="post">
+                <?php
+	    	     include 'customerdata.php';
+                ?>
+                <label for="phoneNumber">New phone number</label>
+                <input type="text" name="phoneNumber" value="New phone number">
+                <button type="submit" id="updateNumber">Update customer phone number</button>
+            </form>
+        </td>
+    </tr>
+</table>
 
 
 <h4> Enter Quantity </h4>
