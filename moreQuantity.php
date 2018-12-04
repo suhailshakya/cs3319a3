@@ -8,10 +8,10 @@
 <?php
 include 'connectdb.php';
 ?>
-<h1>Customers with higher quantities: </h1>
+<h1>Total number of purchases per product: </h1>
 <ol>
 <?php
-   $whichQuantity = $_POST["NumberQuantity"];
+   $whichQuantity = $_POST["ProductID"];
    $query = 'SELECT * FROM purchases, customer, product WHERE customer.cusID=purchases.cusID AND purchases.Quantity > "' . $whichQuantity . '" AND purchases.prodID=product.prodID';
 	//echo $query;
    $result = mysqli_query($connection, $query);

@@ -2,48 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Add a New Customer</title>
+    <title> Add New Customer</title>
 </head>
 <body>
-# this file lets you add a new customer to the database and update the table
+<!--this file lets you add a new customer to the database and update the table-->
         <?php
             include 'connectdb.php';
         ?>
 
 <?php        
-	$whichCustomerFN=$_POST["newcustomerfirstname"];
-        $whichCustomerLN=$_POST["newcustomerlastname"];
-        $whichCustomerCity=$_POST["newcustomercity"];
-        $whichCustomerID=$_POST["newcustomerID"];
-        $whichCustomerPhone=$_POST["newcustomerphone"];
-        $whichCustomeragentID=$_POST["newcustomeragentID"];
+	$firstname = $_POST["cfirstname"];
+        $lastname = $_POST["clastname"];
+        $city = $_POST["ccity"];
+        $customerID = $_POST["customerID"];
+        $phone = $_POST["phone"];
+        $agentID = $_POST["agentID"];
 
-        $query='INSERT INTO customer (cusID, firstname, lastname, city, phonenu$
-        $query2='SELECT * FROM customer WHERE cusID="' . $whichCustomerID . '"';
-        $query3='SELECT * FROM customer';
-        $result=mysqli_query($connection,$query);
-        $result2=mysqli_query($connection,$query2);
-        $result3=mysqli_query($connection,$query3);
+        $query = 'INSERT INTO customer (cusID, firstname, lastname, city, phonenumber, agentID) VALUES ("' . $customerID . '", "' . $firstname . '", "' . $lastname . '", "' . $city . '", "' . $phone . '", "' . $agentID . '")';
+        $queryb = 'SELECT * FROM customer WHERE customer.cusID="' . $customerID . '"';
+        $queryc = 'SELECT * FROM customer';
+        $result = mysqli_query($connection, $query);
+        $resultb = mysqli_query($connection, $queryb);
+        $resultc = mysqli_query($connection, $queryc);
 
-        if($result2){
-             echo "Selected Customer ID is already in use. Select another Customer";
+        if($result){
+             die("Selected Customer ID is already in use. Select another Customer". "<br>");
         }
-
-        while($row=mysqli_fetch_assoc($result3)){
-                echo "<li>";
-                echo "Customer ID: ";
-                echo $row["cusID"];
-                echo "</br>". "Name: ";
-                echo $row["firstname"]. " ";
-                echo $row["lastname"];
-                echo "</br>". "City: ";
-                echo $row["city"];
-                echo "</br>". "Phone number: ";
-                echo $row["phonenumber"];
-                echo "</br>". "AgentID: ";
-                echo $row["agentID"]. "</li>";
+	
+        while($row=mysqli_fetch_assoc($resultc)){
+                echo "Customer ID: ". $row["cusID"];
+                echo "<br>";
+		echo "Name: ". $row["firstname"]. " ". $row["lastname"];
+                echo "<br>";
+		echo "City: ". $row["city"];
+                echo "<br>";
+		echo "Phone number: ". $row["phonenumber"];
+                echo "<br>";
+		echo "AgentID: ". $row["agentID"]. "<br>". "<br>";
         }
-        mysqli_free_result($result3);
+        mysqli_free_result($resultc);
+?>
+</ol>
+<?php
+	mysqli_close($connection);
 ?>
 	
 </body>

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<!-- this files lets you ad-->
+<!-- this files lets you add customer purchases-->
 
         <?php
             include 'connectdb.php';
@@ -17,36 +17,36 @@
         $whichProduct = $_POST["productID"];
         $whichProductQuantity = $_POST["productQ"];
 
-        $query = 'SELECT * FROM (INSERT INTO purchases(cusID, prodID, Quantity) VALUES(' . $whichCustomer . ', ' . $whichProduct . ', ' . $whichProductQuantity . '))';
-        //$query2 = 'SELECT * FROM purchases';
-        $query3 = 'UPDATE purchases SET Quantity= "' . $whichProductQuantity . '" WHERE purchases.cusID="' . $whichCustomer . '" AND purchases.prodID="' . $whichProduct . '" ';
+        $query = 'INSERT INTO purchases(cusID, prodID, Quantity) VALUES(' . $whichCustomer . ', ' . $whichProduct . ', ' . $whichProductQuantity . ')';
+        $queryb = 'SELECT * FROM purchases';
+        $queryc = 'UPDATE purchases SET Quantity= "' . $whichProductQuantity . '" WHERE purchases.cusID="' . $whichCustomer . '" AND purchases.prodID="' . $whichProduct . '" ';
         $result = mysqli_query($connection, $query);
-        //$result2 = mysqli_query($connection, $query2);
-        $result3 = mysqli_query($connection, $query3);
+        $resultb = mysqli_query($connection, $queryb);
+        $resultc = mysqli_query($connection, $queryc);
 
-        if(!$result){
-		echo $query;
-                die("failure");
-		echo $query;
-		echo $query3;
+        if(!$resultb){
+                die("failed to load database");
         }
-        if($result3){
-                while($row=mysqli_fetch_assoc($result)){
-                        echo '<li>';
-                        echo $row["cusID"]. " ";
-                        echo $row["prodID"]. " ";
-                        echo $row["description"]. " ";
+        if($resultc){
+                while($row=mysqli_fetch_assoc($resultb)){
+			echo "Customer ID: ". $row["cusID"]. "<br>";
+			echo "Product ID: ". $row["prodID"]. "<br>";
+			echo "Quantity: ". $row["Quantity"]. "<br>". "<br>";
                 }
         }
 	else{
-		while($row=mysqli_fetch_assoc($result)){
-                        echo '<li>';
-                        echo $row["cusID"]. " ";
-                        echo $row["prodID"]. " ";
-                        echo $row["description"]. " ";
+		while($row=mysqli_fetch_assoc($resultb)){
+			echo "Customer ID: ". $row["cusID"]. "<br>";
+			echo "Product ID: ". $row["prodID"]. "<br>";
+			echo "Quantity: ". $row["Quantity"]. "<br>". "<br>";
                 }
         }
-        mysqli_free_result($result);
+        mysqli_free_result($resultb);
+?>
+
+</ol>
+<?php
+     	mysqli_close($connection);
 ?>
 </body>
 </html>

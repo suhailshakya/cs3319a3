@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title> Uh HUH </title>
+    <meta charset="UTF-8">
+    <title>Add purchases </title>
 </head>
 <body>
 
+<!-- this files lists out all the customer purcases and the costs -->
+
 <?php
-     	include 'connectdb.php';
+      include 'connectdb.php';
 ?>
-<h2>When customer purchase more than entered quantity</h2>
-
-<ol>
+	
 <?php
-     	$whichProd = $_POST["ProductID"];
-        $query = 'SELECT * FROM product, customer, purchases WHERE customer.cusID=purchases.cusID AND purchases.Quantity>"' . $whichProd . '" AND purchases.prodID=product.prodID';
-        $result = mysqli_query($connection, $query);
-
+	$whichProduct=$_POST["productID"];
+        $query = 'SELECT SUM(Quantity), cost, description, cost*SUM(Quantity) FROM product, purchases WHERE product.prodID=purchases.prodID AND product.prodID="' . $whichProduct . '" GROUP BY purchases.prodID'; 
+	$result = mysqli_query($connection, $query);
+	//echo $query;
+	
         if(!$result){
-                die("Query FAIled");
+                die("failure to load database");
         }
 	while($row=mysqli_fetch_assoc($result)){
-		echo $row["firstname"]. " ". $row["lastname"];
-                echo "<br>";
+                //echo "Product ID: ". $row["prodID"]. "<br>";
 		echo $row["description"];
 		echo "<br>";
-		echo "Quantity: ". $row["Quantity"];
+		echo "Quantity: ". $row["SUM(Quantity)"];
+		echo "<br>";
+		echo "Cost: ". $row["cost"]. "<br>";
+		echo " Total cost: $";
+		echo $row["cost*SUM(Quantity)"];
         }
 	mysqli_free_result($result);
 ?>
@@ -34,7 +38,5 @@
 <?php
      	mysqli_close($connection);
 ?>
-
 </body>
 </html>
-

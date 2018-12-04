@@ -10,7 +10,7 @@ while ($row = mysqli_fetch_assoc($result)) {
      echo '<input type="radio" name="customers" value="'; 
      echo $row["cusID"];
      echo '">';
-     echo $row["cusID"];
+     echo $row["cusID"]. " ";
      echo $row["firstname"]. " ";
      echo "<b>". $row["lastname"]. "</b>" . " ";
      echo $row["city"]." ";

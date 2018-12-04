@@ -22,23 +22,7 @@
                     </form>
             </td>
             <td align="center">
-		<h3> Insert Customer, Product and Quantity </h3>
-     		<form action="insertPurchase.php" method="post">
-			<?php
-			    include 'customerdata.php';
-			    include 'productdata.php';
-			?>			
-			Enter Quantity Below
-			<br>
-			<input type="text" name="productQ">
-			<br><br>
-			<input type="submit" value="Get purchased products">
-		</form>
 
-            </td>
-        </tr>   
-        <tr>
-            <td align="center">
                 <h3> Products </h3>
                     <form action="orderDescending.php" method="post">
                         <?php
@@ -62,15 +46,56 @@
 		    <form action="orderAscendingP.php" method="post">
                         <button type="submit" name="submit">Ascending Order</button>
                     </form>
+
+            </td>
+        </tr>   
+        <tr>
+            <td align="center">
+		<!-- insert new purchase by adding quantity and selecting cusID and prod ID-->
+		<h3> Insert new purchase Properly </h3>
+     		<form action="insertPurchase.php" method="post">
+			<?php
+			    include 'customerdata.php';
+			    include 'productdata.php';
+			?>			
+			Enter Quantity Below
+			<br>
+			<input type="text" name="productQ">
+			<br><br>
+			<input type="submit" value="Get purchased products">
+		</form>
       
             </td>
             <td align="center">
                 <!-- insert customer -->
+		<form action="insertUser.php" method="post">
+			Enter customer first name:
+			<input type="text" name="cfirstname">
+			<br>
+			Enter customer last name:
+			<input type="text" name="clastname">
+			<br>
+			Enter customer city:
+			<input type="text" name="ccity">
+			<br>
+			Enter customer ID:
+			<input type="text" name="customerID">
+			<br>
+			Enter phone number:
+			<input type="text" name="phone">
+			<br>
+			Enter agent ID:
+			<input type="text" name="agentID">
+			<br>
+			<br>
+
+			<input type="submit" value="Make new Customer!">
+		</form>
             </td>
         </tr>
         <tr>
             <td align="center">
-                <!-- update-->
+                <!-- update phone number of customers-->
                 <h3>Update user phone number</h3>
                     <form action="update.php" method="post">
                         <?php
@@ -82,15 +107,7 @@
                     </form>
             </td>
             <td align="center">
-                <h4> Enter Quantity </h4>
-                    <form action="moreQuantity.php" method="post">
-                        <input type="text" name="ProductID"><br><br>
-                        <input type="submit" value="Display Quantity and Description">
-                    </form>
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
+		<!-- delete selected customer-->
                 <h3> Select Customers to delete </h3>
                     <form action="deleteCustomer.php" method="post">
                        <?php
@@ -99,6 +116,17 @@
                        <button type="submit" value="Delete"> Delete Customer
                        </button>
                     </form>
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+		<!-- enter quantity and higher amounts of products is the answer -->
+                <h4> Enter Quantity </h4>
+                    <form action="moreQuantity.php" method="post">
+                        <input type="text" name="ProductID"><br><br>
+                        <input type="submit" value="Display Quantity and Description">
+                    </form>
+
             </td>
             <td align="center">
                 <h4> List Description </h4>
@@ -109,12 +137,13 @@
         </tr>
         <tr>
             <td align="center">
+		<!-- shows total quantity purchased for each product -->
                 <form action="totalProdPurchased.php" method="post">
                     Enter the Product ID: <br>
-                        <input type="number" name="value"><input type="submit">
+                        <input type="text" name="productID">
+			<input type="submit" value="Product Information">
                     <br>Click submit to get more info on products
                 </form>
-
             </td>
             <td align="center">                
                 <h3> Agent </h3>

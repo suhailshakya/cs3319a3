@@ -12,9 +12,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     //echo $row["Quantity"];
     //echo '">';
 
-     echo "Customer ID: ". $row["cusID"]. " -- ";
+     echo "<li>". "Customer ID: ". $row["cusID"]. " -- ";
      echo "Product ID: ". $row["prodID"]. " -- ";
-     echo "Quantity: ". $row["Quantity"]. "<br>";
+     echo "Quantity: ". $row["Quantity"]. "<br>". "</li>";
 }
 mysqli_free_result($result);
 echo "</ol>";

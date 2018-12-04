@@ -7,13 +7,13 @@
 <?php
         include 'connectdb.php';
 ?>
-<h2> Products in Ascending order by description</h2>
+<h2> Products in Ascending order by price</h2>
 
 <ol>
 <?--this file orders products in Ascending order-->
 
 <?php
-        $query = 'SELECT * FROM product ORDER BY description';
+        $query = 'SELECT * FROM product ORDER BY cost';
         $result = mysqli_query($connection, $query);
         if(!$result){
                 die("database query failed");
